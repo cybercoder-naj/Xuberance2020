@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    tools:background="@drawable/bg_gradient"
+    tools:context=".ui.fragments.EventsFragment">
+
+    <TextView
+        android:id="@+id/text_view_1"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:alpha="1"
+        android:background="@drawable/bg_title"
+        android:fontFamily="@font/atmospheric"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        android:paddingStart="10dp"
+        android:shadowColor="#000000"
+        android:shadowDx="-2"
+        android:shadowDy="-2"
+        android:shadowRadius="8"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:translationX="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/rules" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_schedule_day"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintTop_toBottomOf="@id/text_view_1" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_clouds"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:itemIconTint="@color/color_sky"
+        app:itemTextColor="@color/color_sky"
+        app:menu="@menu/menu_bottom_nav" />
+</androidx.constraintlayout.widget.ConstraintLayout>

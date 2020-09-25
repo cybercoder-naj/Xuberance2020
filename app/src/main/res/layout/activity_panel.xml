@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".ui.activities.PanelActivity">
+
+    <TextView
+        android:id="@+id/text_view_name"
+        android:layout_width="340dp"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/bg_title"
+        android:fontFamily="@font/atmospheric"
+        android:gravity="center"
+        android:paddingStart="12dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:shadowRadius="8"
+        android:shadowColor="#000000"
+        android:shadowDy="-2"
+        android:shadowDx="-2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="St. Xavier\'s Collegiate School" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_name"
+        app:layout_constraintVertical_bias="0.35">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/atmospheric"
+            android:background="@drawable/bg_material_button"
+            android:paddingTop="22dp"
+            android:paddingBottom="22dp"
+            android:text="@string/registration"
+            android:textSize="32sp"
+            app:backgroundTint="@color/color_clouds_50" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_submission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/bg_material_button"
+            android:paddingTop="22dp"
+            android:paddingBottom="22dp"
+            android:text="@string/submission"
+            android:textSize="32sp"
+            android:fontFamily="@font/atmospheric"
+            app:backgroundTint="@color/color_clouds_50" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_bet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/bg_material_button"
+            android:paddingTop="22dp"
+            android:fontFamily="@font/atmospheric"
+            android:paddingBottom="22dp"
+            android:text="@string/bet"
+            android:textSize="32sp"
+            app:backgroundTint="@color/color_clouds_50" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,136 @@
+<resources>
+    <string name="app_name">X-Uberance 2020</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="finish">Finish</string>
+    <string name="nav_app_bar_close_drawer_description">Close Navigation Drawer</string>
+    <string name="rules">Rules</string>
+    <string name="transition_time">timeTrans</string>
+    <string name="transition_short">shortTrans</string>
+    <string name="transition_title">titleTrans</string>
+    <string name="transition_type">typeTrans</string>
+    <string name="transition_date">dateTrans</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Log in</string>
+    <string name="login_tv">Sign In</string>
+    <string name="invalid_username">Invalid Email</string>
+    <string name="invalid_password">Password is too short!</string>
+    <string name="invalid_phone">Invalid Phone Number</string>
+    <string name="you_have_d_coins">%d X-POINTS are left</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="email_address">Email Address</string>
+    <string name="get_link_via_email">Get link via Email</string>
+    <string name="submit">Submit</string>
+    <string name="email">Email</string>
+    <string name="enter_your_email_id">Enter your email ID:</string>
+    <string name="change_password">You have logged in for the first time!\nChange your password:</string>
+    <string name="confirm">confirm</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="passwords_dont_match">Passwords don\'t match</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="participant_id">Participant #%d</string>
+    <string name="home">Home</string>
+    <string name="about_us">About Us</string>
+    <string name="school_profile">School Profile</string>
+    <string name="schedule">Schedule</string>
+    <string name="events">Events</string>
+    <string name="watch_now">Watch Now</string>
+    <string name="sponsors">Sponsors</string>
+    <string name="team">Team</string>
+    <string name="cannot_be_empty">This field cannot be empty</string>
+    <string name="confirm_your_participants">Confirm your participants</string>
+    <string name="entry_based">Entry-Based</string>
+    <string name="recorded">Broadcast</string>
+    <string name="live">Live</string>
+    <string name="group">Group</string>
+    <string name="share_the_app">Share the App</string>
+    <string name="youtube">Youtube</string>
+    <string name="instagram">Instagram</string>
+    <string name="facebook">Facebook</string>
+    <string name="copy_link">Copy Link</string>
+    <string name="via_email">Via Email</string>
+    <string name="invest">Invest</string>
+    <string name="content_about_us">
+        \t\t\tEver since it was established in 1860, St. Xavier\’s Collegiate School has aimed at moulding
+        students into dignified and capable gentlemen. Over the years, the school has infused a
+        variety of extra-curricular activities into its curriculum to promote leadership skills,
+        confidence, maturity and ensure the holistic development of its students.\n\n\t\t\tAt St. Xavier\’s,
+        the idea of \“Acta non Verba\” or \“actions, not words\” always rings true and the achievements,
+        the victories, the successes and even the occasional failures that bear our name are a
+        testament to that belief. Even in adverse times such as the present, our inextinguishable
+        determination gives us the strength to carry on against all odds.\n\n\t\t\tInter-school fests
+        provide a natural step towards accomplishing this goal by aiding the growth of interpersonal
+        and management skills, bringing different schools together and providing an exhilarating
+        platform for students to display their talents. For this reason, St. Xavier\’s Collegiate
+        School is proud to present X-Uberance \’20: Far but Together, a stepping-stone for the
+        learners of today to become the leaders of tomorrow.\n\n\t\t\tAmidst the uncertainty of our
+        current situation, X-Uberance \’20 provides an opportunity for students to unite in
+        solidarity despite the challenges we are all facing, to bring out the best in every student.
+        From ambitious entrepreneurs to keen quizzers and elegant dancers - even on a virtual platform,
+        X-Uberance strives to give every student the chance to showcase their passion. Such events
+        go a long way in strengthening qualities such as teamwork and patience, invaluable in the
+        fast-paced modern world; whilst encouraging a spirit of healthy competition. Always in the
+        service of our less fortunate brethren, especially in such trying times, we shall also make
+        contributions towards various social causes.\n\n\t\t\tTaking place over the course of 2 days and
+        catering to hundreds of students from top-notch schools across the city, X-Uberance \’20 is
+        our attempt to unite education with innovation and redefine the boundaries of possibility.
+    </string>
+
+    <string name="content_live_rules">
+        <b>Live Rules</b>\n\n
+        Participants of these events perform live in front of the judges, in a Zoom meeting. These meetings shall have no audience.\n\n
+            &#8226;A link to the Zoom Meeting and the Invitation to the WhatsApp group for each respective event shall be sent to the School Representatives at least a day prior to the event.\n
+            &#8226;Participants in these events are advised to have a strong internet connection to ensure a smooth participation in the event.\n
+            &#8226;Participants are requested to remain muted at all times unless they are asked to speak. One shall be muted or unmuted, as per the requirements of the event.\n
+            &#8226;Participants are expected to keep their cameras on at all times during the event.\n
+            &#8226;Participants are expected to keep their cameras on at all times during the event.\n
+            &#8226;All participants are required to rename themselves before they enter the events as “SCHOOLINITIALS_ParticipantName”(eg.- SXCS_DonaldTrump)\n
+            &#8226;All Participants are required to have their school logo as their Zoom profile picture.\n
+        \n<b>The participants are requested to enter the meeting 10 minutes before the scheduled time, after which it will be locked.\nParticipants and respective schools shall be held responsible for any connection issues during the meeting.</b>
+    </string>
+
+    <string name="content_broadcast_rules">
+        <b>Broadcast Events:</b>\n\n
+        Schools are required to make video performances of the respective recorded events.\n\n
+
+            &#8226;The video performance submitted should be the final version, on which judgement will be based. The link to submit the video shall be provided in the X-Uberance app. The last date of submission is the 14th of October.\n
+            &#8226;Each Broadcast Event shall have a WhatsApp group comprising of all participants after the registrations. All necessary communications regarding that event shall be done in the group itself.\n
+    &#8226;The video size should not exceed <b>500mb</b>. <b>MP4</b> is the only video format that
+    will be accepted.
+\n&#8226;These videos will be viewed by the judges in a Zoom Webinar. The link shall be provided and the participants are to be present in this webinar. This event will also be open to audiences, who can access the link from our Instagram page.\n&#8226;A video of the entire event shall be uploaded on YouTube after the fest for future viewing.\n
+
+<b>Keeping in mind the current situation and the social distancing regulations, all individual
+participants should record their parts individually, and then edit it into a performance.
+</b></string>
+
+    <string name="content_entry_rules">
+        <b>Entry-based Events:</b>\n\n
+        Participants of these events will have to upload their entries onto the X-Uberance Google Drive by the specified date. Specific rules and guidelines for each event have also been provided in the Representatives\’ Profile and will be further discussed in their respective WhatsApp groups.\n\n
+            &#8226;Each Entry-Based Event shall have a WhatsApp group (Except X-MEME and X-BET) comprising of all participants after the registrations. All necessary communications regarding that event shall be done in the group itself .\n&#8226;The last date of submission is the <b>
+14th of October
+</b>.\n&#8226;For X-CLICK, X-FLIP and X-SPLASH, the topic/theme will be given and participants will have limited time to finish their project and submit it to the event heads.\n&#8226;For X-MEME, X-60 and X-BET, specific details regarding procedure and submission will be explained in the reps meet.\n
+
+    </string>
+
+    <string name="content_grouped">
+        <b>Group Events:</b>\n\n
+            &#8226;The two events falling under this bracket, X-Negotium and X-Periment, are of 4 events each.\n&#8226;Each Group Event shall have a WhatsApp group comprising of all Participants after the registrations. All necessary communications regarding that event shall be done in the group itself.\n&#8226;The grouped events can be considered to be a single event comprising 4 rounds, in which a single participant or participant group must take part in each round of the event.\n&#8226;Every round in a group event is an <b>
+elimination
+</b> round, and a person needs to pass each event for the team to continue to the next event.\n&#8226;The group of the participant or participant winning the last round shall become the Best Negotiator or the Best Scientists.\n
+
+    </string>
+    <string name="school_name">St. Xavier\'s Collegiate School</string>
+    <string name="x_travagance">X-TRAVAGANCE:</string>
+    <string name="x_acoustic">X-ACOUSTIC:</string>
+    <string name="x_gag">X-GAG:</string>
+    <string name="x_vogue">X-VOGUE:</string>
+    <string name="x_reel">X-REEL:</string>
+    <string name="x_raga">X-RAGA:</string>
+    <string name="registration">Registration</string>
+    <string name="submission">Submission</string>
+    <string name="bet">BET</string>
+    <string name="this_page_is_under_construction_coming_soon">This Page is under construction. Coming soon!</string>
+    <string name="rules_title">RULES</string>
+</resources>

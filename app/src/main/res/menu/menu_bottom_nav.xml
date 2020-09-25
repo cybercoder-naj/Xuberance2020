@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mEntry"
+        android:icon="@drawable/ic_upload"
+        android:title="@string/entry_based"/>
+    <item
+        android:id="@+id/mRecorded"
+        android:icon="@drawable/ic_rec"
+        android:title="@string/recorded" />
+
+    <item
+        android:id="@+id/mLive"
+        android:icon="@drawable/ic_laptop"
+        android:title="@string/live"/>
+
+    <item
+        android:id="@+id/mGroup"
+        android:icon="@drawable/ic_team"
+        android:title="@string/group" />
+</menu>

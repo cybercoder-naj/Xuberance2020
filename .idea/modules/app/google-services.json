@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "547778243327",
+    "firebase_url": "https://xuberance2020-44b6d.firebaseio.com",
+    "project_id": "xuberance2020-44b6d",
+    "storage_bucket": "xuberance2020-44b6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547778243327:android:7e513da0177e23a745baca",
+        "android_client_info": {
+          "package_name": "com.sxcs.xuberance2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547778243327-ijenh0qrotfqlke5gcg4ncpch25p8enn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sxcs.xuberance2020",
+            "certificate_hash": "dc7c0ccaa7887b0337cfdb2f87e158efdd21ee7e"
+          }
+        },
+        {
+          "client_id": "547778243327-ieb80ppislu7nqtu6tfbbb5ot2nl8asl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOyoUIHnV4rbrQlB4OitIChAPSmCb-WvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547778243327-ieb80ppislu7nqtu6tfbbb5ot2nl8asl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

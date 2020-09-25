@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/pages"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/mHomePage"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/home" />
+
+        <item
+            android:id="@+id/mAboutFragment"
+            android:icon="@drawable/ic_about"
+            android:title="@string/about_us" />
+
+        <item
+            android:id="@+id/mSchoolProfileFragment"
+            android:icon="@drawable/ic_school"
+            android:title="@string/school_profile" />
+
+        <item
+            android:id="@+id/mScheduleFragment"
+            android:icon="@drawable/ic_schedule"
+            android:title="@string/schedule" />
+
+        <item
+            android:id="@+id/mEventsFragment"
+            android:icon="@drawable/ic_events"
+            android:title="@string/events" />
+
+        <!--<item
+            android:id="@+id/mLiveStreams"
+            android:icon="@drawable/ic_live"
+            android:title="@string/watch_now" />-->
+
+        <item
+            android:id="@+id/mSponsorsFragment"
+            android:icon="@drawable/ic_sponsor"
+            android:title="@string/sponsors" />
+
+        <item
+            android:id="@+id/mTeamFragment"
+            android:icon="@drawable/ic_team"
+            android:title="@string/team" />
+    </group>
+
+    <group
+        android:id="@+id/actions"
+        android:checkableBehavior="none"
+        android:menuCategory="secondary"
+        android:visible="false"
+        android:enabled="false">
+
+        <item
+            android:id="@+id/mActionShare"
+            android:icon="@drawable/ic_baseline_share_24"
+            android:title="@string/share_the_app" />
+
+        <item
+            android:id="@+id/mYoutube"
+            android:icon="@drawable/ic_youtube"
+            android:title="@string/youtube" />
+
+        <item
+            android:id="@+id/mInstagram"
+            android:icon="@drawable/ic_instagram"
+            android:title="@string/instagram" />
+
+        <item
+            android:id="@+id/mFacebook"
+            android:icon="@drawable/ic_facebook"
+            android:title="@string/facebook" />
+    </group>
+</menu>
