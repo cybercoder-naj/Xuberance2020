@@ -35,12 +35,6 @@ class MainActivity : AppCompatActivity() {
 
         moveGradient(binding.mainParentLayout.background as AnimationDrawable)
 
-        val curVersion = packageManager.getPackageInfo(packageName, 0).versionName
-        Database.getLatestVersion {
-            if (it > curVersion)
-                showDialog(curVersion, it)
-        }
-
         setClickableTextColor()
 
         with(binding) {
@@ -96,39 +90,6 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
                 true
-            }
-        }
-    }
-
-    private fun showDialog(curVersion: String, latestVersion: String) {
-        AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
-            .setTitle("New Version Available!")
-            .setCancelable(false)
-            .setMessage(
-                "You are current using version $curVersion\nHowever, version $latestVersion is out!" +
-                        "\nYou cannot use the app without installing the latest version."
-            )
-            .setPositiveButton("Go to Google Play") { dialog, _ ->
-                openGooglePlay()
-                dialog.dismiss()
-            }
-            .setNegativeButton("Close App") { dialog, _ ->
-                dialog.dismiss()
-                finish()
-            }
-            .create().show()
-    }
-
-    private fun openGooglePlay() {
-        val marketLink = "market://details?id=$packageName"
-        val webLink = "https://play.google.com/store/apps/details?id=$packageName"
-        try {
-            Intent(Intent.ACTION_VIEW, Uri.parse(marketLink)).also {
-                startActivity(it)
-            }
-        } catch (e: ActivityNotFoundException) {
-            Intent(Intent.ACTION_VIEW, Uri.parse(webLink)).also {
-                startActivity(it)
             }
         }
     }

@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.messaging.FirebaseMessaging
+import com.sxcs.xuberance2020.R
 import com.sxcs.xuberance2020.data.Preferences
 import com.sxcs.xuberance2020.databinding.ActivityWelcomeBinding
 import com.sxcs.xuberance2020.firebase.Authentication
@@ -22,9 +23,9 @@ class WelcomeActivity : AppCompatActivity() {
         FirebaseMessaging.getInstance().subscribeToTopic("/topics/General")
 
         binding.videoViewWelcome.apply {
-            // TODO add video and URI path
-            val uriFirst = Uri.parse("")
+            val uriFirst = Uri.parse("android.resource://$packageName/${R.raw.splash}")
             setVideoURI(uriFirst)
+            start()
             setOnCompletionListener {
                 if (Preferences.firstTime) {
                     Preferences.firstTime = false
@@ -42,7 +43,7 @@ class WelcomeActivity : AppCompatActivity() {
                         Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
                             startActivity(it)
                         }
-                    } else if (Authentication.user == null) {
+                    } else if (Authentication.user != null) {
                         Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
                             startActivity(it)
                         }
