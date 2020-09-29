@@ -1,11 +1,13 @@
 package com.sxcs.xuberance2020.ui.activities
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.messaging.FirebaseMessaging
 import com.sxcs.xuberance2020.data.Preferences
 import com.sxcs.xuberance2020.databinding.ActivityWelcomeBinding
+import com.sxcs.xuberance2020.firebase.Authentication
 import com.sxcs.xuberance2020.utils.toast
 
 class WelcomeActivity : AppCompatActivity() {
@@ -24,8 +26,28 @@ class WelcomeActivity : AppCompatActivity() {
             val uriFirst = Uri.parse("")
             setVideoURI(uriFirst)
             setOnCompletionListener {
-                if (Preferences.isFirstTime)
-                    Preferences.isFirstTime = false
+                if (Preferences.firstTime) {
+                    Preferences.firstTime = false
+                    Intent(this@WelcomeActivity, MainActivity::class.java).also {
+                        startActivity(it)
+                    }
+                }
+                else {
+                    if (Authentication.user == null && Preferences.hasEverLoggedIn) {
+                        Intent(this@WelcomeActivity, MainActivity::class.java).also {
+                            startActivity(it)
+                        }
+                        toast("I think you were signed out. Sign back in.")
+                    } else if (Authentication.user == null && !Preferences.hasEverLoggedIn) {
+                        Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
+                            startActivity(it)
+                        }
+                    } else if (Authentication.user == null) {
+                        Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
+                            startActivity(it)
+                        }
+                    }
+                }
                 finish()
             }
         }

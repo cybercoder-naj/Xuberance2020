@@ -3,46 +3,49 @@ package com.sxcs.xuberance2020.ui.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import com.sxcs.xuberance2020.databinding.ActivityPanelBinding
+import androidx.fragment.app.Fragment
+import com.sxcs.xuberance2020.R
+import com.sxcs.xuberance2020.databinding.FragmentProfileBinding
 import com.sxcs.xuberance2020.firebase.Authentication
 import com.sxcs.xuberance2020.firebase.Database
 import com.sxcs.xuberance2020.ui.dialogs.SubmitDialog
 import com.sxcs.xuberance2020.utils.toast
 
-class PanelActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityPanelBinding
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
+    private lateinit var binding: FragmentProfileBinding
 
     companion object {
-        fun getIntent(context: Context) = Intent(context, PanelActivity::class.java)
+        fun getIntent(context: Context) = Intent(context, ProfileFragment::class.java)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityPanelBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentProfileBinding.bind(view)
 
         if (Authentication.user == null)
-            toast("Unexpected error. Try logging in again.")
+            requireContext().toast("Unexpected error. Try logging in again.")
         else {
-            toast("You have successfully signed in!")
+            requireContext().toast("You have successfully signed in!")
 
             Database.hasRegistered {
                 if (it)
                     binding.btnRegistration.isEnabled = false
             }
 
-            Database.getSchoolName()?.also {
-                binding.textViewName.text = it
-            } ?: toast("Error getting School Name")
+            Database.getSchoolName { name ->
+                name?.let {
+                    binding.textViewName.text = it
+                } ?: requireContext().toast("Error getting school name.")
+            }
 
             binding.btnRegistration.setOnClickListener {
-                AlertDialog.Builder(this)
+                AlertDialog.Builder(requireContext())
                     .setTitle("Entering Registration Panel...")
                     .setMessage("Make sure you have all the list of the names of Participants and their valid phone numbers.")
                     .setPositiveButton("Continue") { dialog, _ ->
-                        RegistrationActivity.getIntent(this@PanelActivity).also {
+                        RegistrationActivity.getIntent(requireContext()).also {
                             startActivity(it)
                         }
                         dialog.dismiss()
@@ -54,21 +57,15 @@ class PanelActivity : AppCompatActivity() {
             }
 
             binding.btnSubmission.setOnClickListener {
-                val dialog = SubmitDialog(this)
+                val dialog = SubmitDialog(requireContext())
                 dialog.show()
             }
 
             binding.btnBet.setOnClickListener {
-                BetActivity.getIntent(this).also {
+                BetActivity.getIntent(requireContext()).also {
                     startActivity(it)
                 }
             }
         }
-    }
-
-    override fun onBackPressed() {
-        Authentication.signOut()
-        toast("You have signed out!")
-        super.onBackPressed()
     }
 }

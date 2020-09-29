@@ -38,8 +38,8 @@ class EventDetailsActivity : AppCompatActivity() {
             textviewDescription.text = eventDetails.shortDesc
             Picasso
                 .with(this@EventDetailsActivity)
-                .load(eventDetails.vector)
-                .into(eventBackgroundImage)
+                .load(eventDetails.imageUrl)
+                .into(circleImageView)
             textviewRules.setOnClickListener {
                 EventRulesActivity.getIntent(this@EventDetailsActivity, eventDetails).also {
                     startActivity(it)

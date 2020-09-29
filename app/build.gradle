@@ -94,5 +94,6 @@ dependencies {
     // Easy Transitions
     implementation "com.github.huzenan:EasyTransition:v1.0.0"
 
-//    implementation 'javax.mail:javax.mail-api:1.5.3'
+    implementation 'javax.mail:javax.mail-api:1.5.3'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

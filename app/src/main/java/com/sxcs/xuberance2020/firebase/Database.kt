@@ -20,8 +20,6 @@ object Database {
     private val schoolsRef = Firebase.firestore.collection("schools")
     private val metadata = Firebase.firestore.collection("metadata")
 
-    private val schoolNames = hashMapOf("SXCS" to "St. Xavier's Collegiate School")
-
     fun getLatestVersion(callback: (String) -> Unit) {
         metadata.document("version").get()
             .addOnCompleteListener {
@@ -36,6 +34,7 @@ object Database {
         CoroutineScope(IO).launch {
             val querySnapshot = eventScheduleRef
                 .whereEqualTo(DATABASE_FIELD_TYPE, type.toString())
+                .orderBy("slno")
                 .get().await()
 
             val eventSchedule = mutableListOf<EventDetails>()
@@ -123,7 +122,15 @@ object Database {
         }
     }
 
-    fun getSchoolName() = schoolNames[schoolCode]
+    fun getSchoolName(callback: (String?) -> Unit) = CoroutineScope(IO).launch {
+        val school = schoolsRef
+            .document(schoolCode)
+            .get().await()
+
+        withContext(Main) {
+            callback(school["name"] as? String)
+        }
+    }
 
     suspend fun getLogForEvent(eventName: String, callback: (Int?) -> Unit) =
         withContext(IO) {

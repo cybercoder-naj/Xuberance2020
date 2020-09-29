@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDialog
 import com.sxcs.xuberance2020.R
 import com.sxcs.xuberance2020.data.Credentials
+//import com.sxcs.xuberance2020.data.Credentials
 import com.sxcs.xuberance2020.databinding.DialogSendEmailBinding
 import com.sxcs.xuberance2020.utils.toast
 import com.sxcs.xuberance2020.utils.validateEmail
@@ -57,7 +58,7 @@ class SendEmailDialog(
 
         val session = Session.getInstance(props, object : Authenticator() {
             override fun getPasswordAuthentication(): PasswordAuthentication =
-                PasswordAuthentication("xuberance20@gmail.com", Credentials.EMAIL_PASSWORD)
+                PasswordAuthentication("xuberance20@gmail.com", Credentials.PASS)
         })
 
         try {
@@ -68,8 +69,11 @@ class SendEmailDialog(
                     InternetAddress(email)
                 )
                 subject = "Submit your work!"
-                // TODO set email content
-                setContent("Dummmyyy", "text/html; charset=utf-8")
+
+                setContent(
+                    "This is your submission link\n\nhttps://script.google.com/macros/s/AKfycbzDxv14vHf2lcgKL09sKoGsVcQygL1N9sAaQyUb1a-Ykg1sNuI_/exec",
+                    "text/html; charset=utf-8"
+                )
             }.also {
                 Transport.send(it)
             }

@@ -52,13 +52,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.PanelActivity">
-            <intent-filter>
-                <action android:name="com.sxcs.xuberance2020.ui.activities.PanelActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".ui.activities.RegistrationActivity"
             android:windowSoftInputMode="adjustPan">

@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.LinearLayout.*
 import android.widget.LinearLayout.LayoutParams.MATCH_PARENT
@@ -56,6 +57,7 @@ class TableFragment : Fragment(R.layout.fragment_table) {
     private fun populateLinearLayout(day1: List<EventDetails>, day2: List<EventDetails>, type: EventType) {
         with(binding) {
             layoutScheduleDay1.removeAllViews()
+            layoutScheduleDay1.weightSum = day1.size.toFloat() + 1f
             TextView(requireContext()).apply {
                 text = "Day 1"
                 setTextColor(Color.WHITE)
@@ -63,19 +65,20 @@ class TableFragment : Fragment(R.layout.fragment_table) {
                 setTextAppearance(android.R.style.TextAppearance_Large)
                 setPadding(8, 8, 8, 8)
                 gravity = Gravity.CENTER
-                layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT)
+                layoutParams = LayoutParams(MATCH_PARENT, 0, 0.8f)
                 typeface = ResourcesCompat.getFont(requireContext(), R.font.atmospheric)
             }.also {
                 layoutScheduleDay1.addView(it)
             }
-            var rowLayout = LinearLayout(requireContext()).apply {
-                orientation = HORIZONTAL
-                layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT)
-                weightSum = 2f
-                showDividers = SHOW_DIVIDER_MIDDLE
-                dividerDrawable = ResourcesCompat.getDrawable(resources, R.drawable.divider, null)
-            }
-            for (event in day1) {
+            for (i in day1.indices) {
+                val event = day1[i]
+                val rowLayout = LinearLayout(requireContext()).apply {
+                    orientation = HORIZONTAL
+                    layoutParams = LayoutParams(MATCH_PARENT, 0, 1.2f)
+                    weightSum = 2f
+                    showDividers = SHOW_DIVIDER_MIDDLE
+                    dividerDrawable = ResourcesCompat.getDrawable(resources, R.drawable.divider, null)
+                }
                 TextView(requireContext()).apply {
                     //language=html
                     text = HtmlCompat.fromHtml(
@@ -84,9 +87,8 @@ class TableFragment : Fragment(R.layout.fragment_table) {
                     )
                     setTextColor(Color.WHITE)
                     textSize = 16f
-                    setPadding(8, 8, 8, 8)
-                    gravity = Gravity.CENTER
-                    layoutParams = LayoutParams(0, WRAP_CONTENT, 1f)
+                    setPadding(16, 16, 16, 16)
+                    layoutParams = LayoutParams(0, 132, 1f)
                     typeface = Typeface.create(typeface, Typeface.NORMAL)
                 }.also {
                     rowLayout.addView(it)
@@ -95,47 +97,52 @@ class TableFragment : Fragment(R.layout.fragment_table) {
                     text = if (type == EventType.ENTRY) event.date else event.time
                     setTextColor(Color.WHITE)
                     textSize = 16f
-                    setPadding(8, 8, 8, 8)
+                    setPadding(16, 16, 16, 16)
                     gravity = Gravity.CENTER
-                    layoutParams = LayoutParams(0, WRAP_CONTENT, 1f)
+                    layoutParams = LayoutParams(0, 132, 1f)
                     typeface = Typeface.create(typeface, Typeface.NORMAL)
                 }.also {
                     rowLayout.addView(it)
                 }
+                if (rowLayout.parent != null)
+                    (rowLayout.parent as ViewGroup).removeView(rowLayout)
                 layoutScheduleDay1.addView(rowLayout)
             }
-
+            layoutScheduleDay2.removeAllViews()
+            layoutScheduleDay2.weightSum = day2.size.toFloat() + 1f
             TextView(requireContext()).apply {
                 text = "Day 2"
                 setTextColor(Color.WHITE)
                 setShadowLayer(8f, -2f, -2f, Color.BLACK)
                 setTextAppearance(android.R.style.TextAppearance_Large)
-                setPadding(8, 8, 8, 8)
                 gravity = Gravity.CENTER
-                layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT)
+                layoutParams = LayoutParams(MATCH_PARENT, 0, 0.8f)
                 typeface = ResourcesCompat.getFont(requireContext(), R.font.atmospheric)
             }.also {
                 layoutScheduleDay2.addView(it)
             }
-            rowLayout = LinearLayout(requireContext()).apply {
-                orientation = HORIZONTAL
-                layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT)
-                weightSum = 2f
-                showDividers = SHOW_DIVIDER_MIDDLE
-                dividerDrawable = ResourcesCompat.getDrawable(resources, R.drawable.divider, null)
-            }
-            for (event in day2) {
+            for (i in day2.indices) {
+                val event = day2[i]
+                val rowLayout = LinearLayout(requireContext()).apply {
+                    orientation = HORIZONTAL
+                    layoutParams = LayoutParams(MATCH_PARENT, 0, 1.2f)
+                    weightSum = 2f
+                    if (i == day2.size - 1)
+                        setPadding(0, 0, 0, 100)
+                    showDividers = SHOW_DIVIDER_MIDDLE
+                    dividerDrawable = ResourcesCompat.getDrawable(resources, R.drawable.divider, null)
+                }
                 TextView(requireContext()).apply {
                     //language=html
                     text = HtmlCompat.fromHtml(
-                        "<b>${event.name}</b><br>${event.shortDesc}",
+                        "<b>${event.name}</b><br>${event.meaning}",
                         HtmlCompat.FROM_HTML_MODE_LEGACY
                     )
                     setTextColor(Color.WHITE)
                     textSize = 16f
-                    setPadding(8, 8, 8, 8)
+                    setPadding(16, 16, 16, 16)
                     gravity = Gravity.CENTER
-                    layoutParams = LayoutParams(0, MATCH_PARENT, 1f)
+                    layoutParams = LayoutParams(0, WRAP_CONTENT, 1f)
                     typeface = Typeface.create(typeface, Typeface.NORMAL)
                 }.also {
                     rowLayout.addView(it)
@@ -144,13 +151,14 @@ class TableFragment : Fragment(R.layout.fragment_table) {
                     text = if (type == EventType.ENTRY) event.date else event.time
                     setTextColor(Color.WHITE)
                     textSize = 16f
-                    setPadding(8, 8, 8, 8)
-                    gravity = Gravity.CENTER
-                    layoutParams = LayoutParams(0, MATCH_PARENT, 1f)
+                    setPadding(16, 16, 16, 16)
+                    layoutParams = LayoutParams(0, WRAP_CONTENT, 1f)
                     typeface = Typeface.create(typeface, Typeface.NORMAL)
                 }.also {
                     rowLayout.addView(it)
                 }
+                if (rowLayout.parent != null)
+                    (rowLayout.parent as ViewGroup).removeView(rowLayout)
                 layoutScheduleDay2.addView(rowLayout)
             }
         }

@@ -26,27 +26,25 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
-            ) {
-            }
+            ) {}
 
             override fun onPageSelected(position: Int) {
                 when (position) {
-                    0 -> binding.bottomNav.menu.findItem(R.id.mEntry).isChecked = true
-                    1 -> binding.bottomNav.menu.findItem(R.id.mRecorded).isChecked = true
-                    2 -> binding.bottomNav.menu.findItem(R.id.mLive).isChecked = true
-                    3 -> binding.bottomNav.menu.findItem(R.id.mGroup).isChecked = true
+                    0 -> binding.bottomNav.menu.findItem(R.id.mRecorded).isChecked = true
+                    1 -> binding.bottomNav.menu.findItem(R.id.mLive).isChecked = true
+                    2 -> binding.bottomNav.menu.findItem(R.id.mGroup).isChecked = true
                 }
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
 
+        binding.bottomNav.menu.findItem(R.id.mEntry).isVisible = false
         binding.bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.mEntry -> binding.viewPagerScheduleDay.currentItem = 0
-                R.id.mRecorded -> binding.viewPagerScheduleDay.currentItem = 1
-                R.id.mLive -> binding.viewPagerScheduleDay.currentItem = 2
-                R.id.mGroup -> binding.viewPagerScheduleDay.currentItem = 3
+                R.id.mRecorded -> binding.viewPagerScheduleDay.currentItem = 0
+                R.id.mLive -> binding.viewPagerScheduleDay.currentItem = 1
+                R.id.mGroup -> binding.viewPagerScheduleDay.currentItem = 2
             }
             true
         }

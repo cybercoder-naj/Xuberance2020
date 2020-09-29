@@ -27,6 +27,6 @@ class EventRulesActivity : AppCompatActivity() {
 
         val eventDetails = intent.getSerializableExtra(PARAM1) as EventDetails
         binding.name.text = eventDetails.name
-        binding.content.text = eventDetails.rules
+        binding.content.text = eventDetails.rules.replace("\\n", "\n")
     }
 }

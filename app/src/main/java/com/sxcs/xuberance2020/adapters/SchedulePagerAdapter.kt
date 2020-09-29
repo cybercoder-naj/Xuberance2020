@@ -7,8 +7,8 @@ import com.sxcs.xuberance2020.ui.fragments.TableFragment
 
 class SchedulePagerAdapter(fragmentManager: FragmentManager) :
     FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    override fun getCount() = 4
+    override fun getCount() = 3
 
     override fun getItem(position: Int) =
-        TableFragment.newInstance(EventType.values()[position])
+        TableFragment.newInstance(EventType.values()[position + 1])
 }

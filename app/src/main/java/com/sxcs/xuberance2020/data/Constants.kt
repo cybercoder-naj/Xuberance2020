@@ -5,8 +5,7 @@ object Constants {
     const val PREF_FIRST_TIME = "isFirstTime"
     const val PREF_LOGGED_FIRST_TIME = "Logged First time"
     const val PREF_USERNAME = "Username"
-    const val PREF_PASSWORD = "Password"
-    const val PREF_SHOW_VERSION_DIALOG = "showVersionDialog"
+    const val PREF_HAS_EVER_LOGGED_IN = "has ever logged in"
 
     const val EXTRA_ENTRY_FRAGMENT = "Entry Fragment"
 
@@ -14,12 +13,6 @@ object Constants {
     const val DATABASE_FIELD_DAY = "day"
     const val DATABASE_FIELD_TYPE = "type"
 
-    const val FRAGMENT_ABOUT = 0
-    const val FRAGMENT_SCHOOL = 1
-    const val FRAGMENT_SCHEDULE = 2
-    const val FRAGMENT_EVENTS = 3
-    const val FRAGMENT_SPONSORS = 4
-    const val FRAGMENT_TEAM = 5
 
     const val DATE_DAY1 = "17th October"
     const val DATE_DAY2 = "18th October"

@@ -40,7 +40,9 @@ class EventDayFragment : Fragment(R.layout.fragment_event_day) {
     private fun loadDataToRecyclerView(eventType: EventType) {
         Database.getEventsFromEventType(eventType) { events ->
             events?.let {
-                val eventAdapter = EventScheduleRecyclerAdapter(requireActivity(), it)
+                val eventAdapter = EventScheduleRecyclerAdapter(
+                    requireActivity(),
+                    it.filter { e -> e.imageUrl.isNotBlank() })
                 binding.recyclerViewEventsSchedule.apply {
                     layoutManager = GridLayoutManager(requireContext(), 2, VERTICAL, false)
                     adapter = eventAdapter

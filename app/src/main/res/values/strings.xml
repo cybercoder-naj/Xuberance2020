@@ -33,7 +33,7 @@
     <string name="participant_id">Participant #%d</string>
     <string name="home">Home</string>
     <string name="about_us">About Us</string>
-    <string name="school_profile">School Profile</string>
+    <string name="school_profile">Profile</string>
     <string name="schedule">Schedule</string>
     <string name="events">Events</string>
     <string name="watch_now">Watch Now</string>
@@ -133,4 +133,8 @@ elimination
     <string name="bet">BET</string>
     <string name="this_page_is_under_construction_coming_soon">This Page is under construction. Coming soon!</string>
     <string name="rules_title">RULES</string>
+    <string name="registrations_title">Registrations</string>
+    <string name="st_xavier_s_collegiate_school">St. Xavier\'s Collegiate School</string>
+    <string name="or">OR</string>
+    <string name="log_in_as_guest">LOG IN AS GUEST</string>
 </resources>

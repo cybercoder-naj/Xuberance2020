@@ -15,7 +15,7 @@ import com.sxcs.xuberance2020.ui.activities.EventDetailsActivity
 
 class EventScheduleRecyclerAdapter(
     private val activity: Activity,
-    private val mList: MutableList<EventDetails>
+    private val mList: List<EventDetails>
 ) : RecyclerView.Adapter<EventScheduleRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
