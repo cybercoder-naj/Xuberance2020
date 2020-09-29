@@ -10,6 +10,7 @@
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -24,16 +25,16 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".ui.activities.MainActivity">
+        <activity android:name=".ui.activities.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.WelcomeActivity">
+        <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
-                <action android:name="com.sxcs.xuberance2020.ui.activities.WelcomeActivity" />
+                <action android:name="com.sxcs.xuberance2020.ui.activities.MainActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

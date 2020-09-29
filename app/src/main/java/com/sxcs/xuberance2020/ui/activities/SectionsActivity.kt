@@ -1,5 +1,6 @@
 package com.sxcs.xuberance2020.ui.activities
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.graphics.drawable.AnimationDrawable
@@ -9,6 +10,7 @@ import android.text.SpannableString
 import android.text.style.TextAppearanceSpan
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.GravityCompat
@@ -20,6 +22,7 @@ import com.sxcs.xuberance2020.data.Constants.INSTAGRAM_PAGE
 import com.sxcs.xuberance2020.data.Constants.YOUTUBE_CHANNEL
 import com.sxcs.xuberance2020.databinding.ActivitySectionsBinding
 import com.sxcs.xuberance2020.firebase.Authentication
+import com.sxcs.xuberance2020.firebase.Database
 import com.sxcs.xuberance2020.ui.fragments.*
 import com.sxcs.xuberance2020.utils.moveGradient
 
@@ -44,6 +47,12 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         setImageViewOnClicks()
         setTextFont()
         setProfileVisibility()
+
+        val curVersion = packageManager.getPackageInfo(packageName, 0).versionName
+        Database.getLatestVersion {
+            if (it > curVersion)
+                showDialog(curVersion, it)
+        }
 
         replaceFragment(AboutFragment())
         binding.navigationView.apply {
@@ -213,5 +222,38 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         )
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun showDialog(curVersion: String, latestVersion: String) {
+        AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
+            .setTitle("New Version Available!")
+            .setCancelable(false)
+            .setMessage(
+                "You are current using version $curVersion\nHowever, version $latestVersion is out!" +
+                        "\nYou cannot use the app without installing the latest version."
+            )
+            .setPositiveButton("Go to Google Play") { dialog, _ ->
+                openGooglePlay()
+                dialog.dismiss()
+            }
+            .setNegativeButton("Close App") { dialog, _ ->
+                dialog.dismiss()
+                finish()
+            }
+            .create().show()
+    }
+
+    private fun openGooglePlay() {
+        val marketLink = "market://details?id=$packageName"
+        val webLink = "https://play.google.com/store/apps/details?id=$packageName"
+        try {
+            Intent(ACTION_VIEW, Uri.parse(marketLink)).also {
+                startActivity(it)
+            }
+        } catch (e: ActivityNotFoundException) {
+            Intent(ACTION_VIEW, Uri.parse(webLink)).also {
+                startActivity(it)
+            }
+        }
     }
 }
