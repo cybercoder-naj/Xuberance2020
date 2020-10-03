@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/text_view_1"
-        android:layout_width="240dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:alpha="1"
@@ -24,13 +24,14 @@
         android:shadowDx="-2"
         android:shadowDy="-2"
         android:shadowRadius="8"
+        android:text="@string/general_rules"
         android:textColor="@android:color/white"
-        android:textSize="28sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
         android:translationX="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/rules" />
+        tools:ignore="RtlSymmetry" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager_schedule_day"
@@ -38,8 +39,8 @@
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_nav"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_1" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -47,8 +48,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_clouds"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:itemIconTint="@color/color_sky"
         app:itemTextColor="@color/color_sky"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bottom_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

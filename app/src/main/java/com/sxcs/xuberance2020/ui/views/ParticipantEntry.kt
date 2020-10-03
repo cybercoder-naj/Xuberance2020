@@ -37,45 +37,50 @@ class ParticipantEntry @JvmOverloads constructor(
             binding.participantName.setText(value)
         }
 
-    private var participantNumber: Long?
-        get() {
-            return try {
+    private var participantNumber: Long
+        get() =
+            try {
                 binding.participantNumber.text.toString().toLong()
-            } catch (e: Exception) {
-                null
+            } catch (e: NumberFormatException) {
+                0L
             }
-        }
         set(value) {
             binding.participantNumber.setText(value.toString())
         }
 
     var participant: Participant?
-        get() = when {
-            participantName.isBlank() -> {
-                binding.participantName.apply {
-                    error = context.getString(R.string.cannot_be_empty)
-                    requestFocus()
+        get() =
+            when {
+                participantName.isBlank() xor (participantNumber.count() == 0) -> {
+                    Participant(participantName, participantNumber)
                 }
-                null
-            }
-            participantNumber == null -> {
-                binding.participantNumber.apply {
-                    error = context.getString(R.string.cannot_be_empty)
-                    requestFocus()
+                participantName.isBlank() -> {
+                    binding.participantName.apply {
+                        error = context.getString(R.string.participant_error_msg)
+                        requestFocus()
+                    }
+                    null
                 }
-                null
-            }
-            floor(log10(participantNumber!!.toDouble())) + 1 != 10.0 -> {
-                binding.participantNumber.apply {
-                    error = context.getString(R.string.invalid_phone)
-                    requestFocus()
+                participantNumber.count() == 0 -> {
+                    binding.participantNumber.apply {
+                        error = context.getString(R.string.participant_error_msg)
+                        requestFocus()
+                    }
+                    null
                 }
-                null
+                participantNumber.count() != 10 -> {
+                    binding.participantNumber.apply {
+                        error = context.getString(R.string.invalid_phone)
+                        requestFocus()
+                    }
+                    null
+                }
+                else -> null
             }
-            else -> Participant(participantName, participantNumber!!)
-        }
         set(value) {
             participantName = value!!.name
             participantNumber = value.phoneNumber
         }
 }
+
+private fun Long.count() = (floor(log10(toDouble())) + 1).toInt()

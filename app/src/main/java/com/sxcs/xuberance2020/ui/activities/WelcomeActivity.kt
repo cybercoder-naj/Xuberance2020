@@ -11,6 +11,7 @@ import com.sxcs.xuberance2020.databinding.ActivityWelcomeBinding
 import com.sxcs.xuberance2020.firebase.Authentication
 import com.sxcs.xuberance2020.utils.toast
 
+
 class WelcomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWelcomeBinding
@@ -27,31 +28,34 @@ class WelcomeActivity : AppCompatActivity() {
             setVideoURI(uriFirst)
             start()
             setOnCompletionListener {
-                if (Preferences.firstTime) {
-                    Preferences.firstTime = false
-                    Intent(this@WelcomeActivity, MainActivity::class.java).also {
-                        startActivity(it)
-                    }
-                }
-                else {
-                    if (Authentication.user == null && Preferences.hasEverLoggedIn) {
-                        Intent(this@WelcomeActivity, MainActivity::class.java).also {
-                            startActivity(it)
-                        }
-                        toast("I think you were signed out. Sign back in.")
-                    } else if (Authentication.user == null && !Preferences.hasEverLoggedIn) {
-                        Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
-                            startActivity(it)
-                        }
-                    } else if (Authentication.user != null) {
-                        Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
-                            startActivity(it)
-                        }
-                    }
-                }
-                finish()
+                updateUi()
             }
         }
+    }
+
+    private fun updateUi() {
+        if (Preferences.firstTime) {
+            Preferences.firstTime = false
+            Intent(this@WelcomeActivity, MainActivity::class.java).also {
+                startActivity(it)
+            }
+        } else {
+            if (Authentication.user == null && Preferences.hasEverLoggedIn) {
+                Intent(this@WelcomeActivity, MainActivity::class.java).also {
+                    startActivity(it)
+                }
+                toast("I think you were signed out. Sign back in.")
+            } else if (Authentication.user == null && !Preferences.hasEverLoggedIn) {
+                Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
+                    startActivity(it)
+                }
+            } else if (Authentication.user != null) {
+                Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
+                    startActivity(it)
+                }
+            }
+        }
+        finish()
     }
 
     override fun onBackPressed() {

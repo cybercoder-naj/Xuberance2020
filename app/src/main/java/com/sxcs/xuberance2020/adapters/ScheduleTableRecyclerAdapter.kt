@@ -41,7 +41,7 @@ class ScheduleTableRecyclerAdapter(
         if (getItemViewType(position) == NORMAL) {
             val binding = LayoutTableRowBinding.bind(holder.itemView)
             val eventDetails = mList[position - 1]
-            binding.textViewName.text = eventDetails.name
+            binding.textViewName.text = eventDetails.name.replace("\\n", "\n")
             binding.textViewMeaning.text = eventDetails.meaning
             binding.textViewTime.text = eventDetails.time
         } else if (getItemViewType(position) == HEADER) {

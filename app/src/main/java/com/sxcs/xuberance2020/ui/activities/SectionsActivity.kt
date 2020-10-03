@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.sxcs.xuberance2020.R
@@ -26,7 +27,7 @@ import com.sxcs.xuberance2020.firebase.Database
 import com.sxcs.xuberance2020.ui.fragments.*
 import com.sxcs.xuberance2020.utils.moveGradient
 
-class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoggedInListener {
 
     private lateinit var binding: ActivitySectionsBinding
 
@@ -62,39 +63,58 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     }
 
     private fun setProfileVisibility() {
-        binding.navigationView.menu.findItem(R.id.mProfileFragment).isVisible = Authentication.user != null
+        binding.navigationView.menu.findItem(R.id.mProfileFragment).isVisible =
+            Authentication.user != null
+        binding.navigationView.menu.findItem(R.id.mLoginFragment).isVisible =
+            Authentication.user == null
     }
 
     private fun setImageViewOnClicks() {
         binding.imageShare.setOnClickListener {
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.putExtra(
-                Intent.EXTRA_TEXT,
-                "" // TODO add text here.
-            )
-            intent.type = "text/plain"
-            startActivity(Intent.createChooser(intent, "Share the app via:"))
+            val link = "https://play.google.com/store/apps/details?id=$packageName"
+            Intent(Intent.ACTION_SEND).apply {
+                putExtra(
+                    Intent.EXTRA_TEXT,
+                    "St. Xavier's Collegiate School presents \n\n\"X-Uberance '20\"\nDownload the app on Google Play Store now: $link"
+                )
+                type = "text/plain"
+            }.also {
+                startActivity(Intent.createChooser(it, "Share the app via:"))
+            }
         }
 
         binding.imageYoutube.setOnClickListener {
-            Intent(ACTION_VIEW).apply {
-                `package` = "com.google.android.youtube"
-                data = Uri.parse(YOUTUBE_CHANNEL)
-            }.also {
-                startActivity(it)
+            try {
+                Intent(ACTION_VIEW).apply {
+                    `package` = "com.google.android.youtube"
+                    data = Uri.parse(YOUTUBE_CHANNEL)
+                }.also {
+                    startActivity(it)
+                }
+            } catch (e: Exception) {
+                Intent(ACTION_VIEW, Uri.parse(YOUTUBE_CHANNEL)).also {
+                    startActivity(it)
+                }
             }
         }
 
         binding.imageInsta.setOnClickListener {
-            Intent(ACTION_VIEW).apply {
-                `package` = "com.instagram.android"
-                data = Uri.parse(INSTAGRAM_PAGE)
-            }.also {
-                startActivity(it)
+            try {
+                Intent(ACTION_VIEW).apply {
+                    `package` = "com.instagram.android"
+                    data = Uri.parse(INSTAGRAM_PAGE)
+                }.also {
+                    startActivity(it)
+                }
+            } catch (e: Exception) {
+                Intent(ACTION_VIEW, Uri.parse(INSTAGRAM_PAGE)).also {
+                    startActivity(it)
+                }
             }
         }
 
         binding.imageFb.setOnClickListener {
+            // TODO facebook page id
             Intent(ACTION_VIEW, Uri.parse(FACEBOOK_PAGE_ALT)).also {
                 startActivity(it)
             }
@@ -174,6 +194,17 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             }
             it.title = spannable
         }
+        binding.navigationView.menu.findItem(R.id.mLoginFragment).also {
+            val spannable = SpannableString(it.title).apply {
+                setSpan(
+                    TextAppearanceSpan(this@SectionsActivity, R.style.FontTextNavigation),
+                    0,
+                    length,
+                    0
+                )
+            }
+            it.title = spannable
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -183,6 +214,10 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             fragment::class.simpleName
         ).commit()
 
+        if (fragment is ProfileFragment) {
+            binding.textViewToolbarTitle.isVisible = false
+        }
+
         binding.textViewToolbarTitle.text = when (fragment) {
             is AboutFragment -> "ABOUT US"
             is ScheduleFragment -> "SCHEDULE"
@@ -190,7 +225,7 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             is LiveStreamsFragment -> "WATCH NOW"
             is SponsorsFragment -> "SPONSORS"
             is TeamFragment -> "THE TEAM"
-            is ProfileFragment -> "YOUR PROFILE"
+            is LoginFragment -> "LOG IN"
             else -> ""
         }
     }
@@ -217,6 +252,7 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 R.id.mSponsorsFragment -> SponsorsFragment()
                 R.id.mTeamFragment -> TeamFragment()
                 R.id.mProfileFragment -> ProfileFragment()
+                R.id.mLoginFragment -> LoginFragment()
                 else -> AboutFragment()
             }
         )
@@ -255,5 +291,10 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 startActivity(it)
             }
         }
+    }
+
+    override fun updateUser() {
+        setProfileVisibility()
+        replaceFragment(ProfileFragment())
     }
 }

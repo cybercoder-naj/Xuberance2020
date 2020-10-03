@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.HtmlCompat
 import com.sxcs.xuberance2020.data.models.EventDetails
 import com.sxcs.xuberance2020.databinding.ActivityEventRulesBinding
 
@@ -27,6 +28,9 @@ class EventRulesActivity : AppCompatActivity() {
 
         val eventDetails = intent.getSerializableExtra(PARAM1) as EventDetails
         binding.name.text = eventDetails.name
-        binding.content.text = eventDetails.rules.replace("\\n", "\n")
+        binding.content.text = HtmlCompat.fromHtml(
+            eventDetails.rules,
+            HtmlCompat.FROM_HTML_MODE_LEGACY
+        )
     }
 }

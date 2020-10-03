@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:background="@color/color_clouds"
-    android:background="@android:color/transparent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    tools:background="@color/color_clouds">
 
     <TextView
         android:id="@+id/textView_day"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@android:color/white"
+        android:fontFamily="@font/atmospheric"
+        android:gravity="center"
+        android:padding="8dp"
         android:shadowColor="@android:color/black"
-        android:shadowRadius="8"
         android:shadowDx="-2"
         android:shadowDy="-2"
+        android:shadowRadius="8"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:padding="8dp"
-        android:gravity="center"
-        android:fontFamily="@font/atmospheric"
-        tools:text="DAY 1"/>
-    
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="DAY 1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

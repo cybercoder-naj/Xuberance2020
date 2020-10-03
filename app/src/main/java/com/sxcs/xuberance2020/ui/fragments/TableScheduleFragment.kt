@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sxcs.xuberance2020.R
 import com.sxcs.xuberance2020.adapters.ScheduleTableRecyclerAdapter
 import com.sxcs.xuberance2020.data.EventType
+import com.sxcs.xuberance2020.data.models.EventDetails
 import com.sxcs.xuberance2020.databinding.FragmentTableBinding
 import com.sxcs.xuberance2020.firebase.Database
 
@@ -34,23 +35,48 @@ class TableFragment : Fragment(R.layout.fragment_table) {
     }
 
     private fun loadDataIntoRecyclerView(type: EventType) {
-        Database.getEventsFromEventType(type) { events ->
-            events?.let { e ->
-                val day1 = e.filter { it.day == 1 }
-                val day2 = e.filter { it.day != 1 }
+        if (type != EventType.GROUP)
+            Database.getEventsFromEventType(type) { events ->
+                events?.let { e ->
+                    e.sortBy { details -> details.slno }
+                    val day1 = e.filter { it.day == 1 }
+                    val day2 = e.filter { it.day != 1 }
+                    binding.recyclerView1.apply {
+                        adapter = ScheduleTableRecyclerAdapter(day1, 1)
+                        layoutManager = object: LinearLayoutManager(requireContext(), VERTICAL, false) {
+                            override fun canScrollVertically() = false
+                        }
+                        setHasFixedSize(true)
+                    }
+                    binding.recyclerView2.apply {
+                        adapter = ScheduleTableRecyclerAdapter(day2, 2)
+                        layoutManager = object: LinearLayoutManager(requireContext(), VERTICAL, false) {
+                            override fun canScrollVertically() = false
+                        }
+                        setHasFixedSize(true)
+                    }
+                }
+            }
+        else {
+            Database.getAllGroupEvents { list ->
+                list.sortBy { it.slno }
+                val day1 = list.filter { it.day == 1 }
+                val day2 = list.filter { it.day != 1 }
                 binding.recyclerView1.apply {
                     adapter = ScheduleTableRecyclerAdapter(day1, 1)
-                    layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    layoutManager = object: LinearLayoutManager(requireContext(), VERTICAL, false) {
+                        override fun canScrollVertically() = false
+                    }
                     setHasFixedSize(true)
                 }
                 binding.recyclerView2.apply {
                     adapter = ScheduleTableRecyclerAdapter(day2, 2)
-                    layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    layoutManager = object: LinearLayoutManager(requireContext(), VERTICAL, false) {
+                        override fun canScrollVertically() = false
+                    }
                     setHasFixedSize(true)
                 }
             }
         }
     }
-
-
 }

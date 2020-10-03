@@ -8,7 +8,7 @@
     android:background="@android:color/transparent"
     tools:context=".ui.fragments.AboutFragment">
 
-    <ScrollView
+    <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -17,42 +17,51 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="16dp"
+        app:cardBackgroundColor="@color/color_clouds"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/school_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                tools:visibility="gone"
-                android:scaleType="centerCrop"
-                android:src="@drawable/school_logo"/>
-
-            <TextView
-                android:id="@+id/heading"
-                tools:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/school_name"
-                android:gravity="center"
-                android:fontFamily="@font/atmospheric"
-                android:textColor="@android:color/black"
-                android:layout_marginBottom="16dp"/>
-
-            <TextView
-                android:id="@+id/content"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:textColor="@android:color/black"
                 android:layout_height="wrap_content"
-                android:text="@string/content_about_us"/>
-        </LinearLayout>
-    </ScrollView>
+                android:orientation="vertical">
 
+                <ImageView
+                    android:id="@+id/school_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    tools:visibility="gone"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/school_logo"/>
+
+                <TextView
+                    android:id="@+id/heading"
+                    tools:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/school_name"
+                    android:gravity="center"
+                    android:fontFamily="@font/atmospheric"
+                    android:textColor="@android:color/black"
+                    android:layout_marginBottom="16dp"/>
+
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:text="@string/content_about_us"/>
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

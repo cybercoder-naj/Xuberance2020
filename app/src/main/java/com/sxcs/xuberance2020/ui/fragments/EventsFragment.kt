@@ -19,7 +19,9 @@ class EventsFragment : Fragment(R.layout.fragment_events) {
 
         setupViewPager()
         binding.textView1.setOnClickListener {
-            Intent(requireContext(), EventTypeRulesActivity::class.java).also {
+            Intent(requireContext(), EventTypeRulesActivity::class.java).apply {
+                putExtra(EventTypeRulesActivity.EVENT_NAME, "None")
+            }.also {
                 startActivity(it)
             }
         }

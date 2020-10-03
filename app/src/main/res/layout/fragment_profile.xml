@@ -5,7 +5,7 @@
     android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@android:color/transparent"
     tools:context=".ui.activities.ProfileFragment">
 
     <TextView
@@ -52,7 +52,7 @@
             android:paddingTop="22dp"
             android:paddingBottom="22dp"
             android:text="@string/registration"
-            android:textSize="24sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:backgroundTint="@color/color_clouds_50" />
 
         <com.google.android.material.button.MaterialButton
@@ -65,7 +65,7 @@
             android:paddingTop="22dp"
             android:paddingBottom="22dp"
             android:text="@string/submission"
-            android:textSize="24sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:fontFamily="@font/atmospheric"
             app:backgroundTint="@color/color_clouds_50" />
 
@@ -80,7 +80,7 @@
             android:fontFamily="@font/atmospheric"
             android:paddingBottom="22dp"
             android:text="@string/bet"
-            android:textSize="24sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:backgroundTint="@color/color_clouds_50" />
 
     </LinearLayout>

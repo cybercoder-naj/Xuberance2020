@@ -4,6 +4,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.sxcs.xuberance2020.data.Constants.DATABASE_FIELD_TYPE
+import com.sxcs.xuberance2020.data.Constants.X_NEGOTIUM_ID
+import com.sxcs.xuberance2020.data.Constants.X_PERIMENT_ID
 import com.sxcs.xuberance2020.data.EventType
 import com.sxcs.xuberance2020.data.models.EventDetails
 import com.sxcs.xuberance2020.data.models.Registration
@@ -34,7 +36,6 @@ object Database {
         CoroutineScope(IO).launch {
             val querySnapshot = eventScheduleRef
                 .whereEqualTo(DATABASE_FIELD_TYPE, type.toString())
-                .orderBy("slno")
                 .get().await()
 
             val eventSchedule = mutableListOf<EventDetails>()
@@ -47,6 +48,7 @@ object Database {
             withContext(Main) {
                 callback(if (eventSchedule.isEmpty()) null else eventSchedule)
             }
+
         }
 
     fun getAllEvents(callback: (MutableList<EventDetails>) -> Unit) =
@@ -143,4 +145,60 @@ object Database {
                 callback((school["invested"] as? Long)?.toInt())
             }
         }
+
+    fun getGroupEvents(name: String, callback: (MutableList<EventDetails>) -> Unit) =
+        CoroutineScope(IO).launch {
+            val events = eventScheduleRef
+                .document(if (name == "X-NEGOTIUM") X_NEGOTIUM_ID else X_PERIMENT_ID)
+                .collection("events")
+                .get()
+                .await()
+
+            val list = mutableListOf<EventDetails>()
+            for (docs in events.documents) {
+                val event = docs.toObject<EventDetails>()
+                event?.let {
+                    it.rules = it.rules.replace("\\n", "\n")
+                    list.add(it)
+                }
+            }
+
+            withContext(Main) {
+                callback(list)
+            }
+        }
+
+    fun getAllGroupEvents(callback: (MutableList<EventDetails>) -> Unit) = CoroutineScope(IO).launch {
+        var events = eventScheduleRef
+            .document(X_NEGOTIUM_ID)
+            .collection("events")
+            .get()
+            .await()
+
+        val list = mutableListOf<EventDetails>()
+        for (docs in events.documents) {
+            val event = docs.toObject<EventDetails>()
+            event?.let {
+                it.rules = it.rules.replace("\\n", "\n")
+                list.add(it)
+            }
+        }
+
+        events = eventScheduleRef
+            .document(X_PERIMENT_ID)
+            .collection("events")
+            .get()
+            .await()
+        for (docs in events.documents) {
+            val event = docs.toObject<EventDetails>()
+            event?.let {
+                it.rules = it.rules.replace("\\n", "\n")
+                list.add(it)
+            }
+        }
+
+        withContext(Main) {
+            callback(list)
+        }
+    }
 }

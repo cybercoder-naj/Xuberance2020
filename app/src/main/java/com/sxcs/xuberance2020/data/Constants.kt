@@ -7,12 +7,12 @@ object Constants {
     const val PREF_USERNAME = "Username"
     const val PREF_HAS_EVER_LOGGED_IN = "has ever logged in"
 
-    const val EXTRA_ENTRY_FRAGMENT = "Entry Fragment"
-
     const val DATABASE_FIELD_NAME = "name"
     const val DATABASE_FIELD_DAY = "day"
     const val DATABASE_FIELD_TYPE = "type"
 
+    const val X_NEGOTIUM_ID = "jn9uxnmY1spakoVTGUb9"
+    const val X_PERIMENT_ID = "cNnWQqGa9lumJBkCYXzH"
 
     const val DATE_DAY1 = "17th October"
     const val DATE_DAY2 = "18th October"

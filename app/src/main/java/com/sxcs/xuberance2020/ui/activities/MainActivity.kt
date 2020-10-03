@@ -47,17 +47,14 @@ class MainActivity : AppCompatActivity() {
                     username.error = getString(R.string.invalid_username)
                     username.requestFocus()
                     progressCircular.isVisible = false
-                } /*else if (validatePassword(pass).isNotBlank()) {
-                    password.error = validatePassword(pass)
-                    password.requestFocus()
-                    progressCircular.isVisible = false
-                }*/ else
+                }  else
                     login(user, pass)
             }
 
-            textViewForgotPassword.setOnClickListener {
+            // TODO add this.
+            /*textViewForgotPassword.setOnClickListener {
 
-            }
+            }*/
 
             btnGuest.setOnClickListener {
                 Authentication.user = null

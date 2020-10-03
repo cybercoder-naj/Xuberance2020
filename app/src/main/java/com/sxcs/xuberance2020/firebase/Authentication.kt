@@ -11,23 +11,24 @@ object Authentication {
 
     private val auth = Firebase.auth
     var user = auth.currentUser
-    var schoolCode = ""
 
     fun signIn(email: String, password: String, callback: (Task<AuthResult>) -> Unit) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 callback(task)
                 user = auth.currentUser
-                user!!.email?.let {
-                    schoolCode = it.substring(0, it.indexOf('@')).toUpperCase(Locale.getDefault())
-                }
             }
     }
 
-    fun signOut() {
-        if (user != null)
-            auth.signOut()
-    }
+    val schoolCode: String
+        get() {
+            if (user != null) {
+                return user!!.email?.let {
+                    return@let it.substring(0, it.indexOf('@')).toUpperCase(Locale.getDefault())
+                } ?: ""
+            }
+            return ""
+        }
 
     fun resetPassword(oldPassword: String, newPassword: String, callback: (String) -> Unit) {
         user?.let {

@@ -14,4 +14,12 @@ data class EventDetails(
     var slno: Int = -1,
     var time: String = "",
     var type: String = ""
-) : Serializable
+) : Serializable, Comparable<EventDetails> {
+
+    override fun compareTo(other: EventDetails): Int {
+        return if (this.day - other.day != 0)
+            this.day - other.day
+        else
+            this.slno - other.slno
+    }
+}
