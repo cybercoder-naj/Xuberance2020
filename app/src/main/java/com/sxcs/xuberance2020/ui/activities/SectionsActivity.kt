@@ -27,7 +27,7 @@ import com.sxcs.xuberance2020.firebase.Database
 import com.sxcs.xuberance2020.ui.fragments.*
 import com.sxcs.xuberance2020.utils.moveGradient
 
-class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoggedInListener {
+class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivitySectionsBinding
 
@@ -65,8 +65,6 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     private fun setProfileVisibility() {
         binding.navigationView.menu.findItem(R.id.mProfileFragment).isVisible =
             Authentication.user != null
-        binding.navigationView.menu.findItem(R.id.mLoginFragment).isVisible =
-            Authentication.user == null
     }
 
     private fun setImageViewOnClicks() {
@@ -194,17 +192,6 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             }
             it.title = spannable
         }
-        binding.navigationView.menu.findItem(R.id.mLoginFragment).also {
-            val spannable = SpannableString(it.title).apply {
-                setSpan(
-                    TextAppearanceSpan(this@SectionsActivity, R.style.FontTextNavigation),
-                    0,
-                    length,
-                    0
-                )
-            }
-            it.title = spannable
-        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -225,7 +212,6 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             is LiveStreamsFragment -> "WATCH NOW"
             is SponsorsFragment -> "SPONSORS"
             is TeamFragment -> "THE TEAM"
-            is LoginFragment -> "LOG IN"
             else -> ""
         }
     }
@@ -252,7 +238,6 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 R.id.mSponsorsFragment -> SponsorsFragment()
                 R.id.mTeamFragment -> TeamFragment()
                 R.id.mProfileFragment -> ProfileFragment()
-                R.id.mLoginFragment -> LoginFragment()
                 else -> AboutFragment()
             }
         )
@@ -268,15 +253,20 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 "You are current using version $curVersion\nHowever, version $latestVersion is out!" +
                         "\nYou cannot use the app without installing the latest version."
             )
-            .setPositiveButton("Go to Google Play") { dialog, _ ->
-                openGooglePlay()
-                dialog.dismiss()
-            }
+            .setPositiveButton("Go to Google Play", null)
             .setNegativeButton("Close App") { dialog, _ ->
                 dialog.dismiss()
                 finish()
             }
-            .create().show()
+            .create().apply {
+                setOnShowListener {
+                    getButton(AlertDialog.BUTTON_POSITIVE).apply {
+                        setOnClickListener {
+                            openGooglePlay()
+                        }
+                    }
+                }
+            }.show()
     }
 
     private fun openGooglePlay() {
@@ -291,10 +281,5 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 startActivity(it)
             }
         }
-    }
-
-    override fun updateUser() {
-        setProfileVisibility()
-        replaceFragment(ProfileFragment())
     }
 }

@@ -109,6 +109,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
+        toast("You have successfully logged in")
         Intent(this, SectionsActivity::class.java).also {
             startActivity(it)
         }

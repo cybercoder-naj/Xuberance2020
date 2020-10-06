@@ -1,4 +1,4 @@
-package com.sxcs.xuberance2020.ui.activities
+package com.sxcs.xuberance2020.ui.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -10,15 +10,13 @@ import com.sxcs.xuberance2020.R
 import com.sxcs.xuberance2020.databinding.FragmentProfileBinding
 import com.sxcs.xuberance2020.firebase.Authentication
 import com.sxcs.xuberance2020.firebase.Database
+import com.sxcs.xuberance2020.ui.activities.BetActivity
+import com.sxcs.xuberance2020.ui.activities.RegistrationActivity
 import com.sxcs.xuberance2020.ui.dialogs.SubmitDialog
 import com.sxcs.xuberance2020.utils.toast
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private lateinit var binding: FragmentProfileBinding
-
-    companion object {
-        fun getIntent(context: Context) = Intent(context, ProfileFragment::class.java)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,8 +25,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         if (Authentication.user == null)
             requireContext().toast("Unexpected error. Try logging in again.")
         else {
-            requireContext().toast("You have successfully signed in!")
-
             Database.hasRegistered {
                 if (it)
                     binding.btnRegistration.isEnabled = false

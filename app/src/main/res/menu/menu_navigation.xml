@@ -45,10 +45,5 @@
             android:title="@string/school_profile"
             android:visible="false" />
 
-        <item
-            android:id="@+id/mLoginFragment"
-            android:icon="@drawable/ic_login"
-            android:title="@string/login"
-            android:visible="true" />
     </group>
 </menu>

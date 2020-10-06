@@ -96,7 +96,6 @@ class BetActivity : AppCompatActivity() {
     }
 
     private fun investCoins() {
-        0
         with(binding) {
             var coins = getXPoints()
 

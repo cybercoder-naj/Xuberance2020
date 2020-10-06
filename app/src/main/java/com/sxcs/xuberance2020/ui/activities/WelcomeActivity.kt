@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.messaging.FirebaseMessaging
 import com.sxcs.xuberance2020.R
-import com.sxcs.xuberance2020.data.Preferences
 import com.sxcs.xuberance2020.databinding.ActivityWelcomeBinding
 import com.sxcs.xuberance2020.firebase.Authentication
 import com.sxcs.xuberance2020.utils.toast
@@ -34,25 +33,13 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun updateUi() {
-        if (Preferences.firstTime) {
-            Preferences.firstTime = false
+        if (Authentication.user == null) {
             Intent(this@WelcomeActivity, MainActivity::class.java).also {
                 startActivity(it)
             }
-        } else {
-            if (Authentication.user == null && Preferences.hasEverLoggedIn) {
-                Intent(this@WelcomeActivity, MainActivity::class.java).also {
-                    startActivity(it)
-                }
-                toast("I think you were signed out. Sign back in.")
-            } else if (Authentication.user == null && !Preferences.hasEverLoggedIn) {
-                Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
-                    startActivity(it)
-                }
-            } else if (Authentication.user != null) {
-                Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
-                    startActivity(it)
-                }
+        } else if (Authentication.user != null) {
+            Intent(this@WelcomeActivity, SectionsActivity::class.java).also {
+                startActivity(it)
             }
         }
         finish()

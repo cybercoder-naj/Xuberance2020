@@ -40,7 +40,7 @@ class ConfirmationFragment private constructor() : Fragment(R.layout.fragment_co
             binding.textViewList.text =
                 HtmlCompat.fromHtml(it.getList(), HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-            binding.confirmRegistrations.setOnClickListener { v ->
+            binding.confirmRegistrations.setOnClickListener { _ ->
                 AlertDialog.Builder(requireContext())
                     .setTitle("Submitting Registrations...")
                     .setMessage("Are you sure you want to Proceed? You cannot undo this operation.")
