@@ -1,7 +1,5 @@
 package com.sxcs.xuberance2020.ui.fragments
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -25,7 +23,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         if (Authentication.user == null)
             requireContext().toast("Unexpected error. Try logging in again.")
         else {
-            Database.hasRegistered {
+            Database.canRegistered {
                 if (it)
                     binding.btnRegistration.isEnabled = false
             }

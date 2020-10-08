@@ -11,7 +11,6 @@
     <TextView
         android:id="@+id/text_view_name"
         android:layout_width="340dp"
-        android:textColor="@android:color/white"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:background="@drawable/bg_title"
@@ -20,11 +19,12 @@
         android:paddingStart="12dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:shadowRadius="8"
         android:shadowColor="#000000"
-        android:shadowDy="-2"
         android:shadowDx="-2"
+        android:shadowDy="-2"
+        android:shadowRadius="8"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -47,8 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
-            android:fontFamily="@font/atmospheric"
             android:background="@drawable/bg_material_button"
+            android:fontFamily="@font/atmospheric"
             android:paddingTop="22dp"
             android:paddingBottom="22dp"
             android:text="@string/registration"
@@ -62,11 +62,11 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/bg_material_button"
+            android:fontFamily="@font/atmospheric"
             android:paddingTop="22dp"
             android:paddingBottom="22dp"
             android:text="@string/submission"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:fontFamily="@font/atmospheric"
             app:backgroundTint="@color/color_clouds_50" />
 
         <com.google.android.material.button.MaterialButton
@@ -76,13 +76,12 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/bg_material_button"
-            android:paddingTop="22dp"
             android:fontFamily="@font/atmospheric"
+            android:paddingTop="22dp"
             android:paddingBottom="22dp"
             android:text="@string/bet"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:backgroundTint="@color/color_clouds_50" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

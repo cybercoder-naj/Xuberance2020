@@ -29,21 +29,4 @@ object Authentication {
             }
             return ""
         }
-
-    fun resetPassword(oldPassword: String, newPassword: String, callback: (String) -> Unit) {
-        user?.let {
-            it.reauthenticate(EmailAuthProvider.getCredential(it.email!!, oldPassword))
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        it.updatePassword(newPassword).addOnCompleteListener { task2 ->
-                            if (task2.isSuccessful) {
-                                callback("Password successfully changed")
-                            } else
-                                callback("Error changing password. Please try again")
-                        }
-                    } else
-                        callback("Error signing in. Please try again")
-                }
-        }
-    }
 }

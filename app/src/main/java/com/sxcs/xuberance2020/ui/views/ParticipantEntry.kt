@@ -51,31 +51,29 @@ class ParticipantEntry @JvmOverloads constructor(
     var participant: Participant?
         get() =
             when {
-                participantName.isBlank() xor (participantNumber.count() == 0) -> {
-                    Participant(participantName, participantNumber)
-                }
-                participantName.isBlank() -> {
-                    binding.participantName.apply {
-                        error = context.getString(R.string.participant_error_msg)
-                        requestFocus()
+                participantName.isBlank() xor (participantNumber == 0L) -> {
+                    if (participantName.isBlank()) {
+                        binding.participantName.apply {
+                            error = context.getString(R.string.participant_error_msg)
+                            requestFocus()
+                        }
+                    }
+                    if (participantNumber == 0L) {
+                        binding.participantNumber.apply {
+                            error = context.getString(R.string.participant_error_msg)
+                            requestFocus()
+                        }
                     }
                     null
                 }
-                participantNumber.count() == 0 -> {
-                    binding.participantNumber.apply {
-                        error = context.getString(R.string.participant_error_msg)
-                        requestFocus()
-                    }
-                    null
-                }
-                participantNumber.count() != 10 -> {
+                participantNumber.count() != 10 && participantNumber != 0L -> {
                     binding.participantNumber.apply {
                         error = context.getString(R.string.invalid_phone)
                         requestFocus()
                     }
                     null
                 }
-                else -> null
+                else -> Participant(participantName, participantNumber)
             }
         set(value) {
             participantName = value!!.name

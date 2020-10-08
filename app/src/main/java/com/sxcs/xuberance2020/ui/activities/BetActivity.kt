@@ -31,14 +31,14 @@ class BetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBetBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        CoroutineScope(Default).launch {
-            loadInitialLogs()
-            setTextWatchers()
-        }
 
         Database.hasInvested {
             if (it)
                 disableCommands()
+        }
+        CoroutineScope(Default).launch {
+            loadInitialLogs()
+            setTextWatchers()
         }
 
         with(binding) {

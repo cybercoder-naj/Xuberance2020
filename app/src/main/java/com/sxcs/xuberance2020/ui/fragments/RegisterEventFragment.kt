@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.sxcs.xuberance2020.R
+import com.sxcs.xuberance2020.adapters.RegistrationRecyclerAdapter
 import com.sxcs.xuberance2020.data.models.EventDetails
 import com.sxcs.xuberance2020.data.models.Participant
 import com.sxcs.xuberance2020.data.models.Registration
 import com.sxcs.xuberance2020.databinding.FragmentRegisterEventBinding
-import com.sxcs.xuberance2020.ui.views.ParticipantEntry
 
 class RegisterEventFragment : Fragment(R.layout.fragment_register_event) {
 
@@ -57,14 +59,15 @@ class RegisterEventFragment : Fragment(R.layout.fragment_register_event) {
             )
                 binding.btnNext.text = getString(R.string.finish)
 
-            for (i in 1..event.numberPart) {
-                binding.layoutEntries.addView(ParticipantEntry(requireContext()).apply {
-                    participantId = i
-                })
+            val registrationAdapter = RegistrationRecyclerAdapter(event.numberPart)
+            binding.recyclerViewRegistration.apply {
+                layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
+                adapter = registrationAdapter
+                setHasFixedSize(true)
             }
             binding.btnNext.setOnClickListener {
                 if (binding.btnNext.text == getString(R.string.next)) {
-                    val registrations = getRegistration()
+                    val registrations = getRegistration(registrationAdapter)
                     if (registrations.participants.all { it != null })
                         listener?.nextPage(event.name, registrations)
                 } else if (binding.btnNext.text == getString(R.string.finish))
@@ -82,13 +85,14 @@ class RegisterEventFragment : Fragment(R.layout.fragment_register_event) {
         listener = null
     }
 
-    private fun getRegistration(): Registration {
+    private fun getRegistration(adapter: RegistrationRecyclerAdapter): Registration {
         val participants = mutableListOf<Participant?>()
-        for (i in 1..binding.layoutEntries.childCount) {
+        for (i in 1..adapter.itemCount) {
             val participant =
-                (binding.layoutEntries.getChildAt(i - 1) as ParticipantEntry).participant
-            participants.add(participant)
+                (adapter.getItem(i - 1)).participant
+                participants.add(participant)
         }
         return Registration(participants)
     }
+
 }

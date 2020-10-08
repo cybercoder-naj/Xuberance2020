@@ -78,8 +78,6 @@ object Database {
                     .document(k)
                 batch.set(schoolRegis, v)
             }
-            val school = schoolsRef.document(schoolCode)
-            batch.update(school, mapOf("hasRegistered" to true))
         }.await()
     }
 
@@ -98,9 +96,13 @@ object Database {
                     batch.set(schoolLog, mapOf("invested" to v))
                 }
             }.await()
-            callback(true)
+            withContext(Main) {
+                callback(true)
+            }
         } catch (e: Exception) {
-            callback(false)
+            withContext(Main) {
+                callback(false)
+            }
         }
 
         val school = schoolsRef.document(schoolCode)
@@ -117,10 +119,18 @@ object Database {
         }
     }
 
-    fun hasRegistered(callback: (Boolean) -> Unit) = CoroutineScope(IO).launch {
-        val school = schoolsRef.document(schoolCode).get().await()
+    fun canRegistered(callback: (Boolean) -> Unit) = CoroutineScope(IO).launch {
+        val school = metadata.document("canRegister").get().await()
         withContext(Main) {
-            callback((school["hasRegistered"] as? Boolean) ?: false)
+            callback((school["value"] as? Boolean) ?: false)
+        }
+    }
+
+    fun getAutoLoginKey(callback: (String?) -> Unit) = CoroutineScope(IO).launch {
+        val school = schoolsRef.document(schoolCode).get().await()
+
+        withContext(Main) {
+            callback(school["autoLogin"] as? String)
         }
     }
 
@@ -168,37 +178,38 @@ object Database {
             }
         }
 
-    fun getAllGroupEvents(callback: (MutableList<EventDetails>) -> Unit) = CoroutineScope(IO).launch {
-        var events = eventScheduleRef
-            .document(X_NEGOTIUM_ID)
-            .collection("events")
-            .get()
-            .await()
+    fun getAllGroupEvents(callback: (MutableList<EventDetails>) -> Unit) =
+        CoroutineScope(IO).launch {
+            var events = eventScheduleRef
+                .document(X_NEGOTIUM_ID)
+                .collection("events")
+                .get()
+                .await()
 
-        val list = mutableListOf<EventDetails>()
-        for (docs in events.documents) {
-            val event = docs.toObject<EventDetails>()
-            event?.let {
-                it.rules = it.rules.replace("\\n", "\n")
-                list.add(it)
+            val list = mutableListOf<EventDetails>()
+            for (docs in events.documents) {
+                val event = docs.toObject<EventDetails>()
+                event?.let {
+                    it.rules = it.rules.replace("\\n", "\n")
+                    list.add(it)
+                }
+            }
+
+            events = eventScheduleRef
+                .document(X_PERIMENT_ID)
+                .collection("events")
+                .get()
+                .await()
+            for (docs in events.documents) {
+                val event = docs.toObject<EventDetails>()
+                event?.let {
+                    it.rules = it.rules.replace("\\n", "\n")
+                    list.add(it)
+                }
+            }
+
+            withContext(Main) {
+                callback(list)
             }
         }
-
-        events = eventScheduleRef
-            .document(X_PERIMENT_ID)
-            .collection("events")
-            .get()
-            .await()
-        for (docs in events.documents) {
-            val event = docs.toObject<EventDetails>()
-            event?.let {
-                it.rules = it.rules.replace("\\n", "\n")
-                list.add(it)
-            }
-        }
-
-        withContext(Main) {
-            callback(list)
-        }
-    }
 }

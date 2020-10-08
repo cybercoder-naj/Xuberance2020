@@ -10,7 +10,6 @@ import com.sxcs.xuberance2020.databinding.ActivityWelcomeBinding
 import com.sxcs.xuberance2020.firebase.Authentication
 import com.sxcs.xuberance2020.utils.toast
 
-
 class WelcomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWelcomeBinding
@@ -20,7 +19,7 @@ class WelcomeActivity : AppCompatActivity() {
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        FirebaseMessaging.getInstance().subscribeToTopic("/topics/General")
+        FirebaseMessaging.getInstance().subscribeToTopic("general")
 
         binding.videoViewWelcome.apply {
             val uriFirst = Uri.parse("android.resource://$packageName/${R.raw.splash}")

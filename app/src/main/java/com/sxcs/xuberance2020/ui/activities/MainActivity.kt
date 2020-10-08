@@ -11,7 +11,9 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.messaging.FirebaseMessaging
 import com.sxcs.xuberance2020.R
 import com.sxcs.xuberance2020.data.Preferences
 import com.sxcs.xuberance2020.databinding.ActivityMainBinding
@@ -19,8 +21,8 @@ import com.sxcs.xuberance2020.firebase.Authentication
 import com.sxcs.xuberance2020.firebase.Database
 import com.sxcs.xuberance2020.utils.moveGradient
 import com.sxcs.xuberance2020.utils.toast
-import com.sxcs.xuberance2020.utils.validatePassword
 import com.sxcs.xuberance2020.utils.validateXuberanceEmail
+import kotlin.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,8 +36,6 @@ class MainActivity : AppCompatActivity() {
         loadUsername(Preferences.username)
 
         moveGradient(binding.mainParentLayout.background as AnimationDrawable)
-
-        setClickableTextColor()
 
         with(binding) {
             btnLogin.setOnClickListener {
@@ -70,27 +70,6 @@ class MainActivity : AppCompatActivity() {
         binding.username.setText(username)
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    private fun setClickableTextColor() {
-        with(binding) {
-            textViewForgotPassword.setOnTouchListener { _, event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> textViewForgotPassword.setTextColor(
-                        getColor(
-                            android.R.color.holo_blue_dark
-                        )
-                    )
-                    MotionEvent.ACTION_UP -> textViewForgotPassword.setTextColor(
-                        getColor(
-                            R.color.color_sky
-                        )
-                    )
-                }
-                true
-            }
-        }
-    }
-
     private fun login(username: String, password: String) {
         Authentication.signIn(username, password) {
             if (it.isSuccessful) {
@@ -103,6 +82,12 @@ class MainActivity : AppCompatActivity() {
                 } catch (e: FirebaseAuthInvalidCredentialsException) {
                     toast("Invalid ID or password. Please try again!")
                     binding.progressCircular.visibility = View.INVISIBLE
+                } catch (e: FirebaseAuthException) {
+                    toast("Invalid ID or password. Please try again!")
+                    binding.progressCircular.visibility = View.INVISIBLE
+                } catch (e: Exception) {
+                    toast("Error while logging in")
+                    binding.progressCircular.visibility = View.INVISIBLE
                 }
             }
         }
@@ -110,6 +95,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUI() {
         toast("You have successfully logged in")
+        FirebaseMessaging.getInstance().subscribeToTopic("reps")
         Intent(this, SectionsActivity::class.java).also {
             startActivity(it)
         }

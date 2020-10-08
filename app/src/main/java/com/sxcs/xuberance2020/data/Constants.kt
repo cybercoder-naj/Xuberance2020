@@ -21,4 +21,6 @@ object Constants {
     const val INSTAGRAM_PAGE = "https://www.instagram.com/xuberance20"
     const val FACEBOOK_PAGE = "fb://facewebmodal/f?href=xuberance20"
     const val FACEBOOK_PAGE_ALT = "https://www.facebook.com/?_rdr#!/xuberance20"
+
+    const val SUBMISSION_LINK = "https://xuberance20.com/submission/?autologin_code="
 }

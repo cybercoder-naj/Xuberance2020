@@ -140,4 +140,5 @@ elimination
     <string name="general_rules">General Rules</string>
     <string name="grouped_events">Group Events</string>
     <string name="participant_error_msg">This field cannot be empty.</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
