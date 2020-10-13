@@ -201,10 +201,7 @@ class SectionsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             fragment::class.simpleName
         ).commit()
 
-        if (fragment is ProfileFragment) {
-            binding.textViewToolbarTitle.isVisible = false
-        }
-
+        binding.textViewToolbarTitle.isVisible = fragment !is ProfileFragment
         binding.textViewToolbarTitle.text = when (fragment) {
             is AboutFragment -> "ABOUT US"
             is ScheduleFragment -> "SCHEDULE"

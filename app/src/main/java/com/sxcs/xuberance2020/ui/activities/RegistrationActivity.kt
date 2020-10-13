@@ -42,7 +42,8 @@ class RegistrationActivity : AppCompatActivity(), RegisterEventFragment.OnButton
         binding.viewPagerRegistration.currentItem--
     }
 
-    override fun finishPage() {
+    override fun finishPage(key: String, value: Registration) {
+        registrationMap[key] = value
         registrationAdapter.getItem(++binding.viewPagerRegistration.currentItem) as ConfirmationFragment
     }
 

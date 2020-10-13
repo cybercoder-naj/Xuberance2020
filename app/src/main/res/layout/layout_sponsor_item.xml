@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative_parent"
+    android:layout_width="200dp"
+    android:layout_height="220dp"
+    android:layout_centerInParent="true"
+    android:layout_margin="4dp"
+    android:padding="8dp"
+    tools:context=".adapters.EventScheduleRecyclerAdapter">
+
+    <ImageView
+        android:id="@+id/event_background_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerInside"
+        android:transitionName="@string/transition_time"
+        app:layout_constraintBottom_toTopOf="@id/txt_sponsor_type"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/color_clouds" />
+
+    <TextView
+        android:id="@+id/txt_sponsor_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/atmospheric"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Event Sponsor" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

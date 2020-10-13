@@ -28,28 +28,32 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".ui.activities.WelcomeActivity">
+        <activity android:name=".ui.activities.WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.MainActivity">
+        <activity android:name=".ui.activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.sxcs.xuberance2020.ui.activities.MainActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.SectionsActivity">
+        <activity android:name=".ui.activities.SectionsActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.sxcs.xuberance2020.ui.activities.SectionsActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.EventDetailsActivity">
+        <activity android:name=".ui.activities.EventDetailsActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.sxcs.xuberance2020.ui.activities.EventDetailsActivity" />
 
@@ -58,6 +62,7 @@
         </activity>
         <activity
             android:name=".ui.activities.RegistrationActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="com.sxcs.xuberance2020.ui.activities.RegistrationActivity" />
@@ -65,30 +70,26 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.BetActivity">
+        <activity android:name=".ui.activities.BetActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.sxcs.xuberance2020.ui.activities.BetActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.EventRulesActivity">
+        <activity android:name=".ui.activities.EventRulesActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.sxcs.xuberance2020.ui.activities.EventRulesActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.EventTypeRulesActivity">
+        <activity android:name=".ui.activities.EventTypeRulesActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.sxcs.xuberance2020.ui.activities.EventTypeRulesActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ui.activities.GroupActivity">
-            <intent-filter>
-                <action android:name="com.sxcs.xuberance2020.ui.activities.GroupActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

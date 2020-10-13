@@ -36,7 +36,7 @@ fun HashMap<String, Registration>.getList(): String {
             sb.append("<li> Not Participating</li>")
         } else
             for (participant in v.participants) {
-                if (participant!!.name.isNotBlank() or (participant.phoneNumber != 0L)) {
+                if (participant!!.name.isNotBlank() and (participant.phoneNumber != 0L)) {
                     //language=HTML
                     sb.append("<li> ${participant.name}, ${participant.phoneNumber}</li>")
                 }

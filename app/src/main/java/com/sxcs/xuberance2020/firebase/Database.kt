@@ -16,6 +16,8 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.*
 
 object Database {
     private val eventScheduleRef = Firebase.firestore.collection("event_schedule")
@@ -79,6 +81,15 @@ object Database {
                 batch.set(schoolRegis, v)
             }
         }.await()
+
+        val school = schoolsRef.document(schoolCode)
+        school.update(
+            mapOf(
+                "time" to SimpleDateFormat("dd/MM/YYYY HH:mm:ss", Locale.getDefault()).format(
+                    Date()
+                )
+            )
+        )
     }
 
 
@@ -119,7 +130,7 @@ object Database {
         }
     }
 
-    fun canRegistered(callback: (Boolean) -> Unit) = CoroutineScope(IO).launch {
+    fun canRegister(callback: (Boolean) -> Unit) = CoroutineScope(IO).launch {
         val school = metadata.document("canRegister").get().await()
         withContext(Main) {
             callback((school["value"] as? Boolean) ?: false)

@@ -23,9 +23,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         if (Authentication.user == null)
             requireContext().toast("Unexpected error. Try logging in again.")
         else {
-            Database.canRegistered {
-                if (it)
-                    binding.btnRegistration.isEnabled = false
+            Database.canRegister {
+                binding.btnRegistration.isEnabled = it
             }
 
             Database.getSchoolName { name ->

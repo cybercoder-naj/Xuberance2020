@@ -1,5 +1,7 @@
 package com.sxcs.xuberance2020.data
 
+import com.sxcs.xuberance2020.R
+
 object Constants {
 
     const val PREF_FIRST_TIME = "isFirstTime"
@@ -23,4 +25,36 @@ object Constants {
     const val FACEBOOK_PAGE_ALT = "https://www.facebook.com/?_rdr#!/xuberance20"
 
     const val SUBMISSION_LINK = "https://xuberance20.com/submission/?autologin_code="
+
+    val teamPictures = listOf(
+        R.drawable.naman,
+        R.drawable.nishant,
+        R.drawable.parth,
+        R.drawable.sidhant,
+        R.drawable.vatsal,
+        R.drawable.vihaan,
+        R.drawable.akshat,
+        R.drawable.ranak,
+        R.drawable.kunal,
+        R.drawable.devansh,
+        R.drawable.abhay,
+        R.drawable.rudrayan,
+        R.drawable.vedant
+    )
+
+    val teacherPictures = listOf(
+        R.drawable.joyeeta,
+        R.drawable.dhar
+    )
+
+    val mSponsors = listOf(
+        R.drawable.sponsor_eduaims to "Education Consultancy Partner",
+        R.drawable.sponsor_sangvi to "Event Sponsor",
+        R.drawable.sponsor_asian to "Event Sponsor",
+        R.drawable.sponsor_treasure to "Event Sponsor",
+        R.drawable.sponsor_np to "Event Sponsor",
+        R.drawable.sponsor_lmc to "Health Partner",
+        R.drawable.sponsor_friends_fm to "Radio Partner",
+        R.drawable.sponsor_krishna to "Web Development Partner"
+    )
 }

@@ -33,7 +33,7 @@ class RegisterEventFragment : Fragment(R.layout.fragment_register_event) {
     interface OnButtonClickListener {
         fun nextPage(key: String, value: Registration)
         fun backPage()
-        fun finishPage()
+        fun finishPage(key: String, value: Registration)
         fun getCurrentPosition(): Int
         fun getChildCount(): Int
     }
@@ -70,8 +70,10 @@ class RegisterEventFragment : Fragment(R.layout.fragment_register_event) {
                     val registrations = getRegistration(registrationAdapter)
                     if (registrations.participants.all { it != null })
                         listener?.nextPage(event.name, registrations)
-                } else if (binding.btnNext.text == getString(R.string.finish))
-                    listener?.finishPage()
+                } else if (binding.btnNext.text == getString(R.string.finish)) {
+                    val registrations = getRegistration(registrationAdapter)
+                    listener?.finishPage(event.name, registrations)
+                }
             }
             binding.btnBack.setOnClickListener {
                 listener?.backPage()

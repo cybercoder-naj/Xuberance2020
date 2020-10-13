@@ -141,4 +141,7 @@ elimination
     <string name="grouped_events">Group Events</string>
     <string name="participant_error_msg">This field cannot be empty.</string>
     <string name="sign_out">Sign Out</string>
+    <string name="core_committee">CORE COMMITTEE</string>
+    <string name="teachers_in_charge">TEACHERS-IN-CHARGE</string>
+    <string name="executives">Executives</string>
 </resources>
